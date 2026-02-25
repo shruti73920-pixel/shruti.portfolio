@@ -1,210 +1,346 @@
-<!DOCTYPE html><html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ultimate Multi-Language Quiz</title>
+<title>Student Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:linear-gradient(135deg,#140021,#2d004d,#ff0080);color:white;text-align:center;scroll-behavior:smooth;}
-nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.6);display:flex;justify-content:space-between;padding:15px 40px;z-index:1000;}
-nav a{color:white;text-decoration:none;margin:0 15px;cursor:pointer;}
-section{padding:100px 20px;text-align:center;}
-h1,h2{margin-top:40px;text-shadow:0 0 20px #ff00cc;}
-button{padding:10px 25px;border:none;border-radius:8px;background:linear-gradient(45deg,#ff0080,#ff66cc);color:white;cursor:pointer;margin:10px;transition:0.3s;}
-button:hover{transform:scale(1.1);}
-.container{max-width:750px;margin:30px auto;background:#1d0033;padding:30px;border-radius:12px;display:none;}
-.option{background:#2d004d;margin:10px 0;padding:10px;border-radius:6px;cursor:pointer;}
-.option:hover{background:#ff0080;}
-.selected{background:#ff66cc !important;}
-#timer{color:#ffcc00;font-weight:bold;margin-bottom:10px;}
-#leaderboard{margin-top:30px;background:#000;padding:20px;border-radius:10px;}
-.certificate{display:none;background:white;color:black;padding:30px;margin-top:20px;border-radius:10px;}
-input,textarea{padding:8px;margin:5px;border-radius:6px;border:none;width:90%;}
-.admin-panel{background:#2d004d;padding:20px;margin-top:30px;border-radius:10px;}
-.admin-panel input, .admin-panel textarea{width:90%;}
-.language-select{margin:20px;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* STAR BACKGROUND */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-2;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:rgba(0,0,0,0.8);
+  position:sticky;
+  top:0;
+}
+nav h1{color:#00ffff;}
+nav ul{
+  list-style:none;
+  display:flex;
+}
+nav ul li{margin-left:20px;}
+nav ul li a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+nav ul li a:hover{color:#00ffff;}
+
+/* HEADER */
+header{
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+}
+header img{
+  width:170px;
+  border-radius:50%;
+  border:4px solid #00ffff;
+  box-shadow:0 0 20px #00ffff;
+}
+header h2{
+  margin-top:20px;
+  font-size:34px;
+}
+header p{
+  color:#ccc;
+}
+
+/* SECTIONS */
+section{
+  padding:80px 20px;
+  text-align:center;
+}
+section h2{
+  font-size:32px;
+  margin-bottom:20px;
+  color:#00ffff;
+}
+
+/* SKILLS */
+.skills{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.skill{
+  background:#111;
+  padding:20px;
+  margin:10px;
+  border-radius:12px;
+  width:150px;
+  transition:0.4s;
+}
+.skill:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 15px #00ffff;
+}
+
+/* CONTACT */
+.contact-box{
+  max-width:500px;
+  margin:auto;
+  background:linear-gradient(145deg,#0a0a0a,#111);
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(0,255,255,0.2);
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+.contact-box.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.contact-box input,
+.contact-box textarea{
+  width:100%;
+  padding:14px;
+  margin:12px 0;
+  background:#000;
+  border:2px solid #222;
+  border-radius:10px;
+  color:#fff;
+}
+.contact-box input:focus,
+.contact-box textarea:focus{
+  border-color:#00ffff;
+  box-shadow:0 0 10px #00ffff;
+  outline:none;
+}
+.contact-box button{
+  width:100%;
+  padding:14px;
+  background:#00ffff;
+  border:none;
+  font-weight:bold;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.4s;
+}
+.contact-box button:hover{
+  box-shadow:0 0 20px #00ffff;
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
+  padding:20px;
+  text-align:center;
+  border-top:1px solid #222;
+  color:#888;
+}
+/* PROJECTS */
+.projects-section{
+    padding:80px 20px;
+    text-align:center;
+  }
+  
+  .projects-section h2{
+    color:#00ffff;
+    font-size:32px;
+    margin-bottom:40px;
+  }
+  
+  .projects-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+  }
+  
+  .project-card{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(0,255,255,0.15);
+  }
+  
+  .project-card h3{
+    margin-bottom:10px;
+  }
+  
+  .project-card p{
+    color:#ccc;
+    font-size:15px;
+    margin-bottom:15px;
+  }
+  
+  .project-card span{
+    color:#00ffff;
+    font-size:14px;
+  }
+  
+  /* HOVER EFFECT */
+  .project-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 0 25px #00ffff;
+  }
+  button{
+    padding:12px 28px;
+    margin-right:10px;
+    border:none;
+    border-radius: 30px;
+    background:white;
+    color:black;
+    font-size: 14px;
+    cursor:pointer;
+  }
+  
 </style>
 </head>
-<body><nav>
-<div><b>Quiz.</b></div>
-<div>
-<a onclick="scrollToSection('home')">Home</a>
-<a onclick="scrollToSection('about')">About</a>
-<a onclick="scrollToSection('benefits')">Benefits</a>
-<a onclick="scrollToSection('admin')">Admin</a>
-</div>
-</nav><section id="home">
-<h1>Ultimate Multi-Language Interview Quiz</h1>
-<input type="text" id="username" placeholder="Enter Your Name"><br>
-<div class="language-select">
-<select id="langSelect">
-<option value="java">Java</option>
-<option value="js">JavaScript</option>
-<option value="html">HTML</option>
-<option value="css">CSS</option>
-</select>
-</div>
-<button onclick="showQuiz()">Start Quiz</button>
-</section><section id="about">
-<h2>About Project</h2>
-<p>Advanced quiz platform supports multiple languages, tests HTML, CSS, Java & JS knowledge with leaderboard & certificate system.</p>
-</section><section id="benefits">
-<h2>Benefits</h2>
-<p>• Improves Technical Knowledge <br>• Interview Preparation <br>• Timer Based Quiz <br>• Randomized Questions <br>• Auto Certificate & Score <br>• Leaderboard <br>• Multi-Language Support</p>
-</section><div class="container" id="quizBox">
-<div id="timer"></div>
-<h3 id="question"></h3>
-<div id="options"></div>
-<button onclick="nextQuestion()">Next</button>
-<div id="result"></div>
-<div class="certificate" id="certificate"></div>
-<div id="leaderboard">
-<h3>🏆 Leaderboard</h3>
-<ul id="boardList"></ul>
-</div>
-</div><section id="admin">
-<h2>Admin Panel</h2>
-<div class="admin-panel">
-<h3>Add New Question</h3>
-<input type="text" id="q_text" placeholder="Question Text"><br>
-<input type="text" id="opt1" placeholder="Option 1"><br>
-<input type="text" id="opt2" placeholder="Option 2"><br>
-<input type="text" id="opt3" placeholder="Option 3"><br>
-<input type="text" id="opt4" placeholder="Option 4"><br>
-<input type="number" id="correct" placeholder="Correct Option Index 0-3"><br>
-<select id="qLang">
-<option value="java">Java</option>
-<option value="js">JavaScript</option>
-<option value="html">HTML</option>
-<option value="css">CSS</option>
-</select><br>
-<button onclick="addQuestion()">Add Question</button>
-<h3>Existing Questions</h3>
-<ul id="questionList"></ul>
-</div>
-</section><script>
-let questions = {
-  html: [
-    {q:"What is the purpose of the <meta> tag?",a:["Metadata","Styles","Content","None"],c:0},
-    {q:"How do you embed an image in HTML?",a:["<img>","<image>","<pic>","<src>"],c:0},
-    {q:"Which semantic element defines navigation links?",a:["<nav>","<div>","<span>","<section>"],c:0},
-    {q:"How do you make a form input required?",a:["required","validate","must","check"],c:0},
-    {q:"Which tag is used for a drop-down list?",a:["<select>","<input>","<list>","<option>"],c:0},
-    {q:"What is the correct way to comment in HTML?",a:["<!-- -->","//","/* */","#"],c:0},
-    {q:"Which attribute is used to control element style inline?",a:["style","class","id","design"],c:0},
-    {q:"Which HTML tag is deprecated in HTML5?",a:["<font>","<section>","<article>","<main>"],c:0},
-    {q:"What does <!DOCTYPE html> do?",a:["Defines HTML5","Links CSS","Embed JS","None"],c:0},
-    {q:"Which element plays video in HTML5?",a:["<video>","<media>","<movie>","<play>"],c:0}
-  ],
-  css: [
-    {q:"What does the CSS Box Model include?",a:["Margin, Border, Padding","Loop, Array","Object, Class","Function, Return"],c:0},
-    {q:"Which property is used for text color?",a:["color","bg-color","font","text"],c:0},
-    {q:"What is specificity in CSS?",a:["Selector priority","Styling","Box model","Positioning"],c:0},
-    {q:"Which property makes flex container?",a:["display:flex","layout:flex","flex-container","flex-direction"],c:0},
-    {q:"How do you center a block element horizontally?",a:["margin:auto","text-align","padding","center"],c:0},
-    {q:"What keyword makes grid layout?",a:["display:grid","grid-mode","grid","layout"],c:0},
-    {q:"Which selector targets id?",a:["#"," .","*","@"],c:0},
-    {q:"Which property is used for responsive breakpoints?",a:["@media","@responsive","@break","@screen"],c:0},
-    {q:"What is the purpose of z-index?",a:["Stack order","Opacity","Color","Border"],c:0},
-    {q:"Which property hides overflow?",a:["overflow:hidden","visibility:hidden","display:none","opacity:0"],c:0}
-  ],
-  js: [
-    {q:"Difference between == and === in JS?",a:["Type+value","Value only","Object only","Neither"],c:0},
-    {q:"What is a closure?",a:["Function with outer scope access","Object","Loop","Block"],c:0},
-    {q:"How to select element by id?",a:["getElementById","querySelectorAll","selectId","getId"],c:0},
-    {q:"What does JSON stand for?",a:["JavaScript Object Notation","Java Syntax Obj Net","None","Obj Notation JS"],c:0},
-    {q:"Which keyword declares block-scoped variables?",a:["let","var","constonly","function"],c:0},
-    {q:"Which method removes last array element?",a:["pop()","push()","shift()","reverse()"],c:0},
-    {q:"Event delegation is used for?",a:["Efficient event handling","CSS styling","HTML formatting","JS library"],c:0},
-    {q:"How do you handle async operations?",a:["Promises","Returns","Loops","Edge"],c:0},
-    {q:"What is DOM?",a:["Document Object Model","Dynamic Object Model","Data Object Module","None"],c:0},
-    {q:"JS runs in the browser by?",a:["Interpreter","Compiler","OS","Hardware"],c:0}
-  ],
-  java: [
-    {q:"What is JVM?",a:["Java Virtual Machine","Java Verified Mode","Joint VM","None"],c:0},
-    {q:"Which concept hides implementation?",a:["Encapsulation","Loop","Array","None"],c:0},
-    {q:"Keyword for inheritance?",a:["extends","implements","inherit","super"],c:0},
-    {q:"Which exception is checked?",a:["IOException","RuntimeException","Error","None"],c:0},
-    {q:"Collection that allows duplicates?",a:["ArrayList","Set","Map","HashMap"],c:0},
-    {q:"Entry point of Java app?",a:["main()","start()","run()","init()"],c:0},
-    {q:"Which collection is synchronized?",a:["Vector","ArrayList","HashSet","TreeMap"],c:0},
-    {q:"What does garbage collection do?",a:["Frees memory","Adds data","Sorts list","None"],c:0},
-    {q:"Which keyword prevents inheritance?",a:["final","static","private","abstract"],c:0},
-    {q:"Which interface is marker?",a:["Serializable","Runnable","Comparable","Observer"],c:0}
-  ]
-};
 
-let shuffled=[],index=0,score=0,selected=null,timer,timeLeft=20,currentLang='java';
+<body>
 
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+<canvas id="stars"></canvas>
 
-function showQuiz(){
-let name=document.getElementById('username').value;
-if(name===''){alert('Enter Name'); return;}
-currentLang=document.getElementById('langSelect').value;
-shuffled=questions[currentLang].sort(()=>Math.random()-0.5);
-index=0;score=0;
-document.getElementById('quizBox').style.display='block';
-showQuestion();
+<nav>
+  <h1>My Portfolio</h1>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<header id="home">
+  <img src="https://i.pinimg.com/736x/ae/a4/5e/aea45ef4e163993f0f9e1a27dce791d1.jpg" alt="Cartoon Student">
+  <h2>Hi, I'm a Shruti Sharma</h2>
+  
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>HELLO! I'm SHRUTI SHARMA.I am from Ambala City Haryana.I am passionate about learning new technologies and designing websites.My goal is to become a successful web Developer in the future.</p>
+</section>
+
+<section id="skills">
+  <h2>My Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">MS Word</div>
+    <div class="skill">MS Excel</div>
+  </div>
+
+</section>
+<section id="projects" class="projects-section">
+    <h2>My Projects</h2>
+  
+    <div class="projects-container">
+  
+      <div class="project-card">
+        <h3>🌐 portfolio website</h3>
+        <p>Personal responsive portfolio website with animations.</p>
+        <span>HTML • CSS • </span>
+        <center>
+        <Button>View project</Button>
+      </senter>
+      </div>
+  
+      <div class="project-card">
+        <h3>landing page</h3>
+        <p>Modern landing page with product cards and UI effects.</p>
+        <span>HTML • CSS</span>
+        <center>
+        <button>View project</button>
+      </center>
+      </div>
+  
+      
+  
+    </div>
+  </section>
+  
+
+<section id="contact">
+  <h2>Get In Touch</h2>
+  <div class="contact-box">
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2026 Student Portfolio | Made with ❤️
+</footer>
+
+<script>
+/* STAR ANIMATION */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+for(let i=0;i<150;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2,
+    d:Math.random()*0.5
+  });
 }
 
-function showQuestion(){
-clearInterval(timer); selected=null; timeLeft=20;
-if(index>=shuffled.length){endQuiz(); return;}
-let q=shuffled[index];
-document.getElementById('question').innerText=q.q;
-let html=''; q.a.forEach((opt,i)=>{html+=`<div class='option' onclick='selectAnswer(this,${i})'>${opt}</div>`});
-document.getElementById('options').innerHTML=html;
-startTimer();
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  ctx.beginPath();
+  stars.forEach(s=>{
+    ctx.moveTo(s.x,s.y);
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    s.y+=s.d;
+    if(s.y>canvas.height){s.y=0;}
+  });
+  ctx.fill();
 }
+setInterval(drawStars,30);
 
-function selectAnswer(el,i){selected=i; document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); el.classList.add('selected');}
+/* CONTACT ANIMATION */
+const contactBox=document.querySelector(".contact-box");
+window.addEventListener("scroll",()=>{
+  const pos=contactBox.getBoundingClientRect().top;
+  if(pos<window.innerHeight-100){
+    contactBox.classList.add("show");
+  }
+});
+</script>
 
-function nextQuestion(){if(selected!==null && selected===shuffled[index].c) score++; index++; showQuestion();}
-
-function startTimer(){document.getElementById('timer').innerText='Time Left: '+timeLeft+' sec';
-timer=setInterval(()=>{timeLeft--;document.getElementById('timer').innerText='Time Left: '+timeLeft+' sec'; if(timeLeft<=0){clearInterval(timer); index++; showQuestion();}},1000);}
-
-function endQuiz(){clearInterval(timer); let percent=Math.round((score/shuffled.length)*100);
-document.getElementById('result').innerHTML=`<h3>Quiz Completed 🎉</h3>Score: ${score}/${shuffled.length}<br>Percentage: ${percent}%`;
-generateCertificate(percent); updateLeaderboard(percent);}
-
-function generateCertificate(percent){
-let name=document.getElementById('username').value;
-let cert=document.getElementById('certificate'); cert.style.display='block';
-cert.innerHTML=`<h2>Certificate of Achievement</h2><p>This certifies that</p><h3>${name}</h3><p>has completed the ${currentLang.toUpperCase()} Quiz</p><p>Score: ${percent}%</p>`;
-}
-
-function updateLeaderboard(percent){
-let name=document.getElementById('username').value;
-let board=JSON.parse(localStorage.getItem('leaderboard'))||[];
-board.push({name:name,score:percent,lang:currentLang}); board.sort((a,b)=>b.score-b.score); board=board.slice(0,5);
-localStorage.setItem('leaderboard',JSON.stringify(board));
-let list=''; board.forEach(p=>{list+=`<li>${p.name} (${p.lang.toUpperCase()}) - ${p.score}%</li>`}); document.getElementById('boardList').innerHTML=list;
-}
-
-function addQuestion(){
-let q=document.getElementById('q_text').value;
-let o1=document.getElementById('opt1').value;
-let o2=document.getElementById('opt2').value;
-let o3=document.getElementById('opt3').value;
-let o4=document.getElementById('opt4').value;
-let c=parseInt(document.getElementById('correct').value);
-let lang=document.getElementById('qLang').value;
-if(!q||!o1||!o2||!o3||!o4||isNaN(c)||c<0||c>3){alert('Fill all fields correctly'); return;}
-questions[lang].push({q:q,a:[o1,o2,o3,o4],c:c});
-document.getElementById('q_text').value='';document.getElementById('opt1').value='';document.getElementById('opt2').value='';document.getElementById('opt3').value='';document.getElementById('opt4').value='';document.getElementById('correct').value='';
-renderQuestions();
-}
-
-function renderQuestions(){
-let list=''; for(let lang in questions){questions[lang].forEach((q,i)=>{list+=`<li>${lang.toUpperCase()}: ${q.q} <button onclick='deleteQuestion("${lang}",${i})'>Delete</button></li>`});}
-document.getElementById('questionList').innerHTML=list;
-}
-
-function deleteQuestion(lang,i){questions[lang].splice(i,1); renderQuestions();}
-
-renderQuestions();
-</script></body>
+</body>
 </html>
